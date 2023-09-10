@@ -3,12 +3,54 @@
 
 import "react-cmdk/dist/cmdk.css";
 import CommandPalette, { filterItems, getItemIndex } from "react-cmdk";
-import { useState } from "react";
-import { renderJsonStructure, useHandleOpenCommandPalette } from "./lib/utils";
+import { useState ,useEffect } from "react";
+// import { renderJsonStructure, useHandleOpenCommandPalette } from "./lib/utils";
 
 enum CommandPalettePage {
   Root = "ROOT",
   Quran = "QURAN",
+}
+
+export function renderJsonStructure(jsonStructure: JsonStructure) {
+  return jsonStructure.map((list) => (
+    <CommandPalette.List heading={list.heading} key={list.id}>
+      {list.items.map(({ id, ...rest }) => (
+        <CommandPalette.ListItem
+          index={getItemIndex(jsonStructure, id)}
+          key={id}
+          {...rest}
+        />
+      ))}
+    </CommandPalette.List>
+  ));
+}
+
+export function useHandleOpenCommandPalette(
+  setIsOpen: Dispatch<SetStateAction<boolean>>
+) {
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (
+        (navigator?.platform?.toLowerCase().includes("mac")
+          ? e.metaKey
+          : e.ctrlKey) &&
+        e.key === "k"
+      ) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        setIsOpen((currentValue) => {
+          return !currentValue;
+        });
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 }
 
 const Example = () => {
