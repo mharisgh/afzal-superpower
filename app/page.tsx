@@ -38,15 +38,6 @@ const Example = () => {
             icon: "CogIcon",
             href: "#",
           },
-          {
-            id: "projects",
-            children: "Projects",
-            icon: "RectangleStackIcon",
-            closeOnSelect: false,
-            onClick: () => {
-              setPage("projects");
-            },
-          },
         ],
       },
 
