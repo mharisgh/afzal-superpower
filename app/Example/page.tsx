@@ -4,7 +4,7 @@
 import "react-cmdk/dist/cmdk.css";
 import CommandPalette, { filterItems, getItemIndex } from "react-cmdk";
 import { useState } from "react";
-import { renderJsonStructure, useHandleOpenCommandPalette } from "./lib/utils";
+import { renderJsonStructure, useHandleOpenCommandPalette } from "../lib/utils";
 
 enum CommandPalettePage {
   Root = "ROOT",
@@ -12,13 +12,12 @@ enum CommandPalettePage {
 }
 
 const Example = () => {
-  const [page, setPage] = useState<CommandPalettePage>(CommandPalettePage.Root);
+  const [page, setPage] = useState<"root" | "projects">(CommandPalettePage.Root);
   // const [open, setOpen] = useState<boolean>(true);
   const [search, setSearch] = useState("");
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   useHandleOpenCommandPalette(setIsOpen)
-  
 
   const filteredItems = filterItems(
     [
@@ -116,7 +115,7 @@ const Example = () => {
           id: "quran.surah1",
           children: "Surah Al Fatihah",
           icon: "HomeIcon",
-          href: "https://quran.com/en/al-fatihah", target:"_blank",
+          href: "https://quran.com/en/al-fatihah",
         },
         {
           id: "quran.surah2",
