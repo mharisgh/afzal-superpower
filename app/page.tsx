@@ -1,56 +1,14 @@
 'use client'
 
-
 import "react-cmdk/dist/cmdk.css";
-import CommandPalette, { filterItems, getItemIndex } from "react-cmdk";
-import { useState ,useEffect } from "react";
+import CommandPalette, { JsonStructure, filterItems, getItemIndex, } from "react-cmdk";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
 // import { renderJsonStructure, useHandleOpenCommandPalette } from "./lib/utils";
+import { renderJsonStructure, useHandleOpenCommandPalette } from "react-cmdk";
 
 enum CommandPalettePage {
   Root = "ROOT",
   Quran = "QURAN",
-}
-
-export function renderJsonStructure(jsonStructure: JsonStructure) {
-  return jsonStructure.map((list) => (
-    <CommandPalette.List heading={list.heading} key={list.id}>
-      {list.items.map(({ id, ...rest }) => (
-        <CommandPalette.ListItem
-          index={getItemIndex(jsonStructure, id)}
-          key={id}
-          {...rest}
-        />
-      ))}
-    </CommandPalette.List>
-  ));
-}
-
-export function useHandleOpenCommandPalette(
-  setIsOpen: Dispatch<SetStateAction<boolean>>
-) {
-  useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      if (
-        (navigator?.platform?.toLowerCase().includes("mac")
-          ? e.metaKey
-          : e.ctrlKey) &&
-        e.key === "k"
-      ) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        setIsOpen((currentValue) => {
-          return !currentValue;
-        });
-      }
-    }
-
-    document.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
 }
 
 const Example = () => {
@@ -60,11 +18,10 @@ const Example = () => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   useHandleOpenCommandPalette(setIsOpen)
-  
 
   const filteredItems = filterItems(
     [
-      // Quran section
+      // Read section
       {
         heading: "Read",
         id: "read",
@@ -72,8 +29,8 @@ const Example = () => {
           {
             id: "quran",
             children: "Quran",
-            icon: "CodeBracketIcon",
-            closeOnSelect:false,
+            icon: "BookOpenIcon",
+            closeOnSelect: false,
             onClick: () => {
               setPage(CommandPalettePage.Quran)
               setSearch("")
@@ -82,12 +39,12 @@ const Example = () => {
           {
             id: "hadith",
             children: "Hadith",
-            icon: "ReceiptPercentIcon",
+            icon: "AcademicCapIcon",
             href: "#",
           },
         ]
       },
-      // Suggestion
+      // Prompt
       {
         heading: "Prompt",
         id: "suggestion",
@@ -95,39 +52,29 @@ const Example = () => {
           {
             id: "chat-gpt",
             children: "Chat GPT",
-            icon: "CodeBracketIcon",
+            icon: "ChatBubbleLeftEllipsisIcon",
             href: "#",
           },
           {
             id: "mid-journey",
             children: "Mid Journey",
-            icon: "LifebuoyIcon",
-            href: "#",
-          },
-          {
-            id: "mid-journey",
-            children: "Google Bard",
-            icon: "LifebuoyIcon",
-            href: "#",
+            icon: "CameraIcon",
+            onClick: () => {
+              alert("We're working on it...");
+            },
           },
         ],
       },
-      // Send
+      // Actions
       {
-        heading: "Send",
-        id: "send",
+        heading: "Actions",
+        id: "actions",
         items: [
           {
-            id: "home",
-            children: "Message to Haris",
-            icon: "HomeIcon",
-            href: "#",
-          },
-          {
-            id: "settings",
-            children: "Settings",
-            icon: "CogIcon",
-            href: "#",
+            id: "translate",
+            children: "Translate",
+            icon: "DocumentMagnifyingGlassIcon",
+            href: "https://translate.google.co.in/", target: "_blank",
           },
         ],
       },
@@ -144,7 +91,7 @@ const Example = () => {
           id: "quran.surah1",
           children: "Surah Al Fatihah",
           icon: "HomeIcon",
-          href: "https://quran.com/en/al-fatihah", target:"_blank",
+          href: "https://quran.com/en/al-fatihah", target: "_blank",
         },
         {
           id: "quran.surah2",
@@ -158,18 +105,9 @@ const Example = () => {
           icon: "HomeIcon",
           href: "#",
         },
-        // {
-        //   id: "projects",
-        //   children: "Projects",
-        //   icon: "RectangleStackIcon",
-        //   closeOnSelect: false,
-        //   onClick: () => {
-        //     setPage("projects");
-        //   },
-        // },
       ],
     },
-  ],search);
+  ], search);
 
   return (
     <CommandPalette
@@ -197,8 +135,8 @@ const Example = () => {
         )}
       </CommandPalette.Page>
 
-      <CommandPalette.Page id={CommandPalettePage.Quran} 
-      onEscape={() => {setPage(CommandPalettePage.Root)}}>
+      <CommandPalette.Page id={CommandPalettePage.Quran}
+        onEscape={() => { setPage(CommandPalettePage.Root) }}>
         {renderJsonStructure(documentationItems)}
       </CommandPalette.Page>
     </CommandPalette>
