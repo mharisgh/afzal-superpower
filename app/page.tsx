@@ -64,27 +64,7 @@ const Example = () => {
 
   const filteredItems = filterItems(
     [
-      {
-        heading: "Home",
-        id: "home",
-        items: [
-          {
-            id: "home",
-            children: "Home",
-            icon: "HomeIcon",
-            href: "#",
-          },
-          {
-            id: "settings",
-            children: "Settings",
-            icon: "CogIcon",
-            href: "#",
-          },
-        ],
-      },
-
       // Quran section
-
       {
         heading: "Read",
         id: "read",
@@ -100,39 +80,54 @@ const Example = () => {
             }
           },
           {
-            id: "hadees",
-            children: "hadees",
+            id: "hadith",
+            children: "Hadith",
             icon: "ReceiptPercentIcon",
             href: "#",
           },
         ]
       },
-
-      // other titled section
-
+      // Suggestion
       {
-        heading: "Other",
-        id: "advanced",
+        heading: "Prompt",
+        id: "suggestion",
         items: [
           {
-            id: "developer-settings",
-            children: "Developer settings",
+            id: "chat-gpt",
+            children: "Chat GPT",
             icon: "CodeBracketIcon",
             href: "#",
           },
           {
-            id: "privacy-policy",
-            children: "Privacy policy",
+            id: "mid-journey",
+            children: "Mid Journey",
             icon: "LifebuoyIcon",
             href: "#",
           },
           {
-            id: "log-out",
-            children: "Log out",
-            icon: "ArrowRightOnRectangleIcon",
-            onClick: () => {
-              alert("Logging out...");
-            },
+            id: "mid-journey",
+            children: "Google Bard",
+            icon: "LifebuoyIcon",
+            href: "#",
+          },
+        ],
+      },
+      // Send
+      {
+        heading: "Send",
+        id: "send",
+        items: [
+          {
+            id: "home",
+            children: "Message to Haris",
+            icon: "HomeIcon",
+            href: "#",
+          },
+          {
+            id: "settings",
+            children: "Settings",
+            icon: "CogIcon",
+            href: "#",
           },
         ],
       },
