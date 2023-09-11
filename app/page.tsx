@@ -217,7 +217,7 @@ const Example = () => {
       </CommandPalette>
       {/* Other text contents */}
       <div className="">
-        <h1 className="mt-6 md:mt-10 text-center text-xl md:text-3xl">أسلم عليكم</h1>
+        <h1 className="text-gray-400 mt-6 md:mt-10 text-center text-xl md:text-3xl">أسلم عليكم</h1>
 
         <div className="flex top-3 md:top-8 items-center gap-4 right-5 md:right-10 fixed ">
           <p className="hidden md:block">Muhammad Afzal</p>
@@ -232,12 +232,12 @@ const Example = () => {
           </div>
         </div>
 
-        <h1 className="text-center mt-12 px-6 leading-10 text-[2.5rem] font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-purple-500 to-cyan-600">Superpower <span className="text-white">to your finger</span></h1>
-        <p className="text-gray-400 text-lg text-center mt-4">Find at the speed of thought</p>
+        <h1 className="text-center mt-12 px-6 leading-10 text-[2.5rem] font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-purple-500 to-cyan-600">Superpower <span className="">to your finger</span></h1>
+        <p className="text-lg text-gray-400 text-center mt-4">Find at the speed of thought</p>
 
         {/* keyboard icons */}
         <div className="hidden md:flex mt-4 justify-center w-full">
-          <img src="/ctrlk.svg" alt="" />
+          <img className="" src="/ctrlk.svg" alt="" />
         </div>
         <p className="hidden md:block text-gray-400 text-sm mt-2 text-center">One magic shortcut</p>
 
