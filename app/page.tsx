@@ -220,7 +220,7 @@ const Example = () => {
         <h1 className="text-gray-400 mt-6 md:mt-10 text-center text-xl md:text-3xl">أسلم عليكم</h1>
 
         <div className="flex top-3 md:top-8 items-center gap-4 right-5 md:right-10 fixed ">
-          <p className="hidden md:block">Muhammad Afzal</p>
+          <p className="hidden md:block text-white">Muhammad Afzal</p>
           <div className="w-[50px] h-[50px] bg-red-300 rounded-full overflow-hidden ">
             {/* <img src="/profile.jpeg" alt="sdfsd" /> */}
             <Image
